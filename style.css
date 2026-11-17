@@ -1,0 +1,99 @@
+/* Design Tokens & Anti-Slop Custom Styles for Desa Wisata Lereng Asri */
+
+:root {
+  --color-primary: #184736;
+  --color-primary-hover: #123629;
+  --color-primary-container: #e4eee6;
+  --color-surface: #f6fbf7;
+  --color-earth: #8c4322;
+  --color-whatsapp: #15803d;
+  --color-text-main: #111827;
+  --color-text-muted: #4b5563;
+  --color-border: #e5e7eb;
+}
+
+/* Base interactive cursor rule per Anti-Slop R-39 */
+button,
+a,
+select,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+[role="button"],
+[role="tab"] {
+  cursor: pointer;
+}
+
+button:disabled,
+input:disabled,
+select:disabled {
+  cursor: not-allowed;
+}
+
+/* Clear Visible Focus Rings (R-32, R-34, WCAG 2.1) */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Page scroll padding to prevent fixed header & bottom nav from obscuring anchored sections */
+html {
+  scroll-padding-top: 5rem;
+  scroll-padding-bottom: 5.5rem;
+}
+
+/* Touch-friendly target minimums for buttons & links */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Ensure smooth image rendering and no layout shifts (R-40) */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Modal and Backdrop animations respecting prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Active Bottom Nav Indicator */
+.bottom-nav-item.active {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.bottom-nav-item.active svg {
+  fill: var(--color-primary);
+}
+
+/* Subtle elevation for cards conforming to DESIGN.md */
+.card-elevation {
+  box-shadow: 0 4px 16px rgba(24, 71, 54, 0.05);
+}
+
+/* Print Stylesheet for Physical Village Handover */
+@media print {
+  header,
+  nav,
+  aside,
+  #booking-modal,
+  .dest-filter-btn,
+  #calc-wa-btn {
+    display: none !important;
+  }
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+}

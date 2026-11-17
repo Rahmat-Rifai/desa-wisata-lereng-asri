@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desa Wisata Lereng Asri - Sentral Informasi & Reservasi Resmi BUMDes</title>
+  <meta name="description" content="Portal resmi Desa Wisata Lereng Asri. Temukan informasi lengkap destinasi alam, rute bus rombongan, transparansi harga tiket masuk (HTM), paket agrowisata, camping, dan reservasi langsung via WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            lereng: {
+              primary: '#184736',
+              'primary-hover': '#123629',
+              'primary-container': '#e4eee6',
+              surface: '#f6fbf7',
+              earth: '#8c4322',
+              'earth-hover': '#723419',
+              'whatsapp-dark': '#15803d',
+              'whatsapp-hover': '#166534',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          borderRadius: {
+            'xl': '12px',
+            '2xl': '16px',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-lereng-surface text-gray-900 font-sans antialiased pb-24 md:pb-12 min-h-screen flex flex-col selection:bg-lereng-primary-container selection:text-lereng-primary">
+
+  <!-- Skip Link for Accessibility (R-32, R-39) -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-lereng-primary focus:text-white focus:rounded-xl focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lereng-earth">
+    Lewati ke konten utama
+  </a>
+
+  <!-- Top Altitude & Weather Info Bar (R-05, R-31, DESIGN.md) -->
+  <aside aria-label="Informasi Cuaca dan Ketinggian Desa" class="bg-lereng-primary text-white text-xs md:text-sm py-2 px-4 border-b border-white/10">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400" aria-hidden="true"></span>
+        <span class="font-medium tracking-wide">1.250 mdpl &bull; Cuaca Sejuk Alami 19&deg;C</span>
+      </div>
+      <div class="hidden sm:flex items-center gap-4 text-emerald-100">
+        <span>Buka Setiap Hari: 06.00 &ndash; 18.00 WIB</span>
+        <span>&bull;</span>
+        <a href="tel:+6281234567890" class="hover:text-white underline underline-offset-2 focus:outline-none focus:ring-2 focus:ring-white focus:rounded">Posko BUMDes: 0812-3456-7890</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Sticky Top App Bar (Mobile Shell & Desktop Navigation) -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200">
+    <div class="max-w-5xl mx-auto px-4 h-14 md:h-16 flex items-center justify-between">
+      <a href="#beranda" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-lereng-primary focus:rounded-xl p-1">
+        <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-lereng-primary flex items-center justify-center text-white font-bold text-lg shadow-sm group-hover:bg-lereng-primary-hover transition-colors">
+          LA
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xs uppercase tracking-wider font-semibold text-lereng-earth">Desa Wisata Resmi</span>
+          <span class="text-base md:text-lg font-bold text-gray-900 leading-tight">Lereng Asri</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Items -->
+      <nav aria-label="Navigasi Desktop" class="hidden md:flex items-center gap-1 text-sm font-medium text-gray-700">
+        <a href="#beranda" class="nav-desktop-item px-3 py-2 rounded-lg hover:text-lereng-primary hover:bg-lereng-primary-container/40 transition-colors">Beranda</a>
+        <a href="#destinasi" class="nav-desktop-item px-3 py-2 rounded-lg hover:text-lereng-primary hover:bg-lereng-primary-container/40 transition-colors">Destinasi &amp; Tiket</a>
+        <a href="#paket" class="nav-desktop-item px-3 py-2 rounded-lg hover:text-lereng-primary hover:bg-lereng-primary-container/40 transition-colors">Paket Wisata</a>
+        <a href="#kalkulator" class="nav-desktop-item px-3 py-2 rounded-lg hover:text-lereng-primary hover:bg-lereng-primary-container/40 transition-colors">Hitung Biaya</a>
+        <a href="#galeri" class="nav-desktop-item px-3 py-2 rounded-lg hover:text-lereng-primary hover:bg-lereng-primary-container/40 transition-colors">Galeri</a>
+        <a href="#lokasi" class="nav-desktop-item px-3 py-2 rounded-lg hover:text-lereng-primary hover:bg-lereng-primary-container/40 transition-colors">Akses &amp; Rute</a>
+      </nav>
+
+      <!-- Desktop CTA Action -->
+      <div class="flex items-center gap-2">
+        <button id="open-booking-modal-btn" type="button" class="px-4 py-2 text-sm font-semibold text-white bg-lereng-primary hover:bg-lereng-primary-hover active:scale-95 transition rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lereng-primary cursor-pointer">
+          Formulir Reservasi
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main id="main-content" class="flex-grow">
+
+    <!-- Hero Section (R-05, R-31, R-40) -->
+    <section id="beranda" aria-labelledby="hero-title" class="relative bg-gradient-to-b from-white to-lereng-surface pt-6 pb-10 md:pt-12 md:pb-16 border-b border-gray-200">
+      <div class="max-w-5xl mx-auto px-4">
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          
+          <!-- Hero Copywriting -->
+          <div class="md:col-span-7 space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-lereng-primary-container text-lereng-primary text-xs font-semibold">
+              <span class="w-2 h-2 rounded-full bg-lereng-primary" aria-hidden="true"></span>
+              Pusat Informasi Resmi BUMDes Lereng Asri
+            </div>
+            
+            <h1 id="hero-title" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight leading-tight">
+              Jelajahi Pesona Lereng Asri dengan Transparansi Penuh
+            </h1>
+            
+            <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+              Semua rincian destinasi, harga tiket masuk, paket tur, hingga panduan jalur bus 50-seat tersedia lengkap di satu tempat. Tanpa biaya terselubung, langsung terhubung ke pengelola desa via WhatsApp.
+            </p>
+
+            <!-- Primary CTAs -->
+            <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Desa%20Wisata%20Lereng%20Asri%2C%20saya%20ingin%20tanya%20informasi%20kunjungan%20wisata." target="_blank" rel="noopener noreferrer" class="min-h-[44px] px-5 py-3 rounded-xl bg-lereng-whatsapp-dark hover:bg-lereng-whatsapp-hover text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-sm transition active:scale-98 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-600">
+                <svg class="w-5 h-5 fill-current" aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.173.086.275.072.376-.043.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/>
+                </svg>
+                <span>Pesan Cepat via WhatsApp</span>
+              </a>
+              <a href="#paket" class="min-h-[44px] px-5 py-3 rounded-xl bg-white hover:bg-gray-50 border border-gray-300 text-gray-800 font-semibold text-sm flex items-center justify-center transition active:scale-98 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lereng-primary">
+                Lihat Paket &amp; Transparansi Harga
+              </a>
+            </div>
+
+            <!-- Authentic Trust Pillars (Anti-Slop C-5, No Fake Reviews) -->
+            <div class="pt-4 grid grid-cols-2 sm:grid-cols-3 gap-3 border-t border-gray-200 text-xs text-gray-700">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-lereng-earth" aria-hidden="true"></span>
+                <span>Dikelola BUMDes Sukamaju</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-lereng-primary" aria-hidden="true"></span>
+                <span>Jalur Bus 50-Seat Teruji</span>
+              </div>
+              <div class="flex items-center gap-2 col-span-2 sm:col-span-1">
+                <span class="w-2 h-2 rounded-full bg-lereng-whatsapp-dark" aria-hidden="true"></span>
+                <span>Tarif Resmi Tanpa Pungli</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Image with Performance Attributes (R-40: with width, height, fetchpriority) -->
+          <div class="md:col-span-5">
+            <div class="relative rounded-2xl overflow-hidden shadow-md border border-gray-200 bg-gray-100 aspect-[4/3]">
+              <img 
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" 
+                alt="Panorama alam perbukitan hijau dan hamparan terasering di Desa Wisata Lereng Asri" 
+                width="900" 
+                height="675" 
+                fetchpriority="high" 
+                class="w-full h-full object-cover"
+              >
+              <div class="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white text-xs">
+                <p class="font-bold">Kawasan Wisata Lereng Pegunungan</p>
+                <p class="text-gray-200 text-[11px]">Dikelola mandiri bersama warga lokal dan pemuda karang taruna</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Quick Metrics Section (R-17, R-31: Genuine factual data from spec) -->
+    <section aria-label="Ringkasan Akses dan Fasilitas Desa" class="bg-white py-6 border-b border-gray-200">
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="p-3.5 rounded-xl bg-lereng-surface border border-gray-200">
+            <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider block">Jarak dari Kota</span>
+            <span class="text-xl font-bold text-lereng-primary block mt-0.5">24 km</span>
+            <span class="text-xs text-gray-600 mt-1 block">&plusmn;45 menit via Ring Road</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-lereng-surface border border-gray-200">
+            <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider block">Tiket Masuk (HTM)</span>
+            <span class="text-xl font-bold text-lereng-earth block mt-0.5">Mulai Rp 10.000</span>
+            <span class="text-xs text-gray-600 mt-1 block">Transparan sesuai spot</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-lereng-surface border border-gray-200">
+            <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider block">Area Parkir Terpadu</span>
+            <span class="text-xl font-bold text-lereng-primary block mt-0.5">2 Hektar</span>
+            <span class="text-xs text-gray-600 mt-1 block">Muat 40 bus besar</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-lereng-surface border border-gray-200">
+            <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider block">Akses Rombongan</span>
+            <span class="text-xl font-bold text-emerald-800 block mt-0.5">Aspal Hotmix</span>
+            <span class="text-xs text-gray-600 mt-1 block">Lebar 7,5 meter</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Destination Catalog (FR-01, Section 5.2) -->
+    <section id="destinasi" aria-labelledby="destinasi-heading" class="py-10 md:py-16">
+      <div class="max-w-5xl mx-auto px-4">
+        
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+          <div>
+            <h2 id="destinasi-heading" class="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+              Katalog Objek Wisata &amp; Tiket Masuk
+            </h2>
+            <p class="text-sm text-gray-600 mt-1">
+              Rincian jam buka, fasilitas utama, dan jarak jalan kaki dari tempat parkir bus/mobil.
+            </p>
+          </div>
+          
+          <!-- Category Filter Tabs (R-26, Touch targets >= 44px) -->
+          <div class="inline-flex p-1 bg-white rounded-xl border border-gray-200 overflow-x-auto max-w-full" role="tablist" aria-label="Filter Kategori Destinasi">
+            <button type="button" role="tab" id="filter-all" aria-selected="true" data-filter="all" class="dest-filter-btn min-h-[40px] px-3.5 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-lereng-primary text-white transition focus:outline-none focus:ring-2 focus:ring-lereng-primary cursor-pointer whitespace-nowrap">
+              Semua Spot (5)
+            </button>
+            <button type="button" role="tab" id="filter-alam" aria-selected="false" data-filter="alam" class="dest-filter-btn min-h-[40px] px-3.5 py-1.5 text-xs sm:text-sm font-medium text-gray-600 hover:text-lereng-primary rounded-lg transition focus:outline-none focus:ring-2 focus:ring-lereng-primary cursor-pointer whitespace-nowrap">
+              Alam &amp; Foto
+            </button>
+            <button type="button" role="tab" id="filter-edukasi" aria-selected="false" data-filter="edukasi" class="dest-filter-btn min-h-[40px] px-3.5 py-1.5 text-xs sm:text-sm font-medium text-gray-600 hover:text-lereng-primary rounded-lg transition focus:outline-none focus:ring-2 focus:ring-lereng-primary cursor-pointer whitespace-nowrap">
+              Edukasi &amp; Kuliner
+            </button>
+          </div>
+        </div>
+
+        <!-- Destination Cards Grid -->
+        <div id="destinasi-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Spot 1: Kebun Teh Skywalk -->
+          <article data-category="alam" class="dest-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80" alt="Jembatan kayu Kebun Teh Skywalk Puncak Asri membentang di atas hamparan teh" width="600" height="375" loading="lazy" class="w-full h-full object-cover">
+                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-white/95 text-lereng-primary text-xs font-semibold shadow-sm">
+                  Spot Panorama Alam
+                </span>
+              </div>
+              <div class="p-4 space-y-2">
+                <div class="flex items-baseline justify-between">
+                  <h3 class="text-base font-bold text-gray-900">Kebun Teh Skywalk Puncak Asri</h3>
+                  <span class="text-sm font-bold text-lereng-earth">Rp 15.000</span>
+                </div>
+                <p class="text-xs text-gray-600 leading-relaxed">
+                  Jembatan kayu sepanjang 120 meter dengan dek foto 360 derajat menghadap lembah hijau dan pegunungan.
+                </p>
+                <div class="pt-2 border-t border-gray-100 text-xs text-gray-500 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span>Jam Buka:</span>
+                    <span class="font-medium text-gray-700">06.00 &ndash; 17.00 WIB</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span>Jalan Kaki dari Parkir:</span>
+                    <span class="font-medium text-gray-700">3 menit (120 meter datar)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 pt-0">
+              <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Lereng%20Asri%2C%20saya%20ingin%20tanya%20tiket%20Kebun%20Teh%20Skywalk." target="_blank" rel="noopener noreferrer" class="min-h-[44px] w-full px-4 py-2.5 rounded-xl border border-lereng-primary text-lereng-primary hover:bg-lereng-primary hover:text-white font-semibold text-xs flex items-center justify-center transition focus:outline-none focus:ring-2 focus:ring-lereng-primary">
+                Tanya Tiket Spot Ini
+              </a>
+            </div>
+          </article>
+
+          <!-- Spot 2: Curug Bening Pelangi -->
+          <article data-category="alam" class="dest-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=600&q=80" alt="Air terjun alami Curug Bening Pelangi dengan kolam dangkal jernih" width="600" height="375" loading="lazy" class="w-full h-full object-cover">
+                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-white/95 text-lereng-primary text-xs font-semibold shadow-sm">
+                  Air Terjun &amp; Alam
+                </span>
+              </div>
+              <div class="p-4 space-y-2">
+                <div class="flex items-baseline justify-between">
+                  <h3 class="text-base font-bold text-gray-900">Curug Bening Pelangi</h3>
+                  <span class="text-sm font-bold text-lereng-earth">Rp 20.000</span>
+                </div>
+                <p class="text-xs text-gray-600 leading-relaxed">
+                  Kolam air pegunungan alami dangkal yang aman untuk anak-anak, dilengkapi gazebo peristirahatan dan sewa pelampung.
+                </p>
+                <div class="pt-2 border-t border-gray-100 text-xs text-gray-500 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span>Jam Buka:</span>
+                    <span class="font-medium text-gray-700">07.30 &ndash; 16.30 WIB</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span>Jalan Kaki dari Parkir:</span>
+                    <span class="font-medium text-gray-700">6 menit (250m tangga landai)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 pt-0">
+              <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Lereng%20Asri%2C%20saya%20ingin%20tanya%20tiket%20Curug%20Bening%20Pelangi." target="_blank" rel="noopener noreferrer" class="min-h-[44px] w-full px-4 py-2.5 rounded-xl border border-lereng-primary text-lereng-primary hover:bg-lereng-primary hover:text-white font-semibold text-xs flex items-center justify-center transition focus:outline-none focus:ring-2 focus:ring-lereng-primary">
+                Tanya Tiket Spot Ini
+              </a>
+            </div>
+          </article>
+
+          <!-- Spot 3: Spot Sunrise Bukit Embun -->
+          <article data-category="alam" class="dest-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?auto=format&fit=crop&w=600&q=80" alt="Suasana fajar keemasan di Spot Sunrise Bukit Embun Lereng Asri" width="600" height="375" loading="lazy" class="w-full h-full object-cover">
+                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-white/95 text-lereng-primary text-xs font-semibold shadow-sm">
+                  Sunrise &amp; Camping
+                </span>
+              </div>
+              <div class="p-4 space-y-2">
+                <div class="flex items-baseline justify-between">
+                  <h3 class="text-base font-bold text-gray-900">Spot Sunrise Bukit Embun</h3>
+                  <span class="text-sm font-bold text-lereng-earth">Rp 15.000</span>
+                </div>
+                <p class="text-xs text-gray-600 leading-relaxed">
+                  Dek kayu panorama lautan awan pagi hari, dilengkapi warung seduh kopi robusta dan teh hangat racikan warga.
+                </p>
+                <div class="pt-2 border-t border-gray-100 text-xs text-gray-500 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span>Jam Buka:</span>
+                    <span class="font-medium text-gray-700">04.30 &ndash; 08.30 WIB</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span>Jalan Kaki dari Parkir:</span>
+                    <span class="font-medium text-gray-700">4 menit (180m dari drop jeep)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 pt-0">
+              <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Lereng%20Asri%2C%20saya%20ingin%20tanya%20spot%20Sunrise%20Bukit%20Embun." target="_blank" rel="noopener noreferrer" class="min-h-[44px] w-full px-4 py-2.5 rounded-xl border border-lereng-primary text-lereng-primary hover:bg-lereng-primary hover:text-white font-semibold text-xs flex items-center justify-center transition focus:outline-none focus:ring-2 focus:ring-lereng-primary">
+                Tanya Tiket Spot Ini
+              </a>
+            </div>
+          </article>
+
+          <!-- Spot 4: Agro Wisata Petik Stroberi -->
+          <article data-category="edukasi" class="dest-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1543158266-0066955047b1?auto=format&fit=crop&w=600&q=80" alt="Greenhouse stroberi ramah keluarga di Agro Wisata Petik Stroberi" width="600" height="375" loading="lazy" class="w-full h-full object-cover">
+                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-white/95 text-lereng-primary text-xs font-semibold shadow-sm">
+                  Agrowisata Edukasi
+                </span>
+              </div>
+              <div class="p-4 space-y-2">
+                <div class="flex items-baseline justify-between">
+                  <h3 class="text-base font-bold text-gray-900">Agro Wisata Petik Stroberi</h3>
+                  <span class="text-sm font-bold text-lereng-earth">Rp 10.000</span>
+                </div>
+                <p class="text-xs text-gray-600 leading-relaxed">
+                  Greenhouse bersih ramah lansia dan kursi roda. Hasil petikan ditimbang langsung sesuai tarif per ons yang transparan.
+                </p>
+                <div class="pt-2 border-t border-gray-100 text-xs text-gray-500 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span>Jam Buka:</span>
+                    <span class="font-medium text-gray-700">08.00 &ndash; 16.00 WIB</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span>Jalan Kaki dari Parkir:</span>
+                    <span class="font-medium text-gray-700">1 menit (50m jalur datar)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 pt-0">
+              <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Lereng%20Asri%2C%20saya%20ingin%20tanya%20Agro%20Petik%20Stroberi." target="_blank" rel="noopener noreferrer" class="min-h-[44px] w-full px-4 py-2.5 rounded-xl border border-lereng-primary text-lereng-primary hover:bg-lereng-primary hover:text-white font-semibold text-xs flex items-center justify-center transition focus:outline-none focus:ring-2 focus:ring-lereng-primary">
+                Tanya Tiket Spot Ini
+              </a>
+            </div>
+          </article>
+
+          <!-- Spot 5: Pasar Kuliner Tradisional Lembah -->
+          <article data-category="edukasi" class="dest-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Pasar kuliner tradisional desa menyajikan makanan lokal khas perdesaan" width="600" height="375" loading="lazy" class="w-full h-full object-cover">
+                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-white/95 text-lereng-primary text-xs font-semibold shadow-sm">
+                  Kuliner Tradisional
+                </span>
+              </div>
+              <div class="p-4 space-y-2">
+                <div class="flex items-baseline justify-between">
+                  <h3 class="text-base font-bold text-gray-900">Pasar Kuliner Lembah Asri</h3>
+                  <span class="text-sm font-bold text-lereng-earth">Rp 10.000</span>
+                </div>
+                <p class="text-xs text-gray-600 leading-relaxed">
+                  Sajian nasi jagung, tiwul manis gula aren, tempe mendoan hangat, dan olahan hasil tani warga sekitar dengan harga terjangkau.
+                </p>
+                <div class="pt-2 border-t border-gray-100 text-xs text-gray-500 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span>Hari Buka:</span>
+                    <span class="font-medium text-gray-700">Sabtu &amp; Minggu 07.00 &ndash; 14.00 WIB</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span>Jalan Kaki dari Parkir:</span>
+                    <span class="font-medium text-gray-700">2 menit (80m dari parkir barat)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 pt-0">
+              <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Lereng%20Asri%2C%20saya%20ingin%20tanya%20Pasar%20Kuliner%20Tradisional." target="_blank" rel="noopener noreferrer" class="min-h-[44px] w-full px-4 py-2.5 rounded-xl border border-lereng-primary text-lereng-primary hover:bg-lereng-primary hover:text-white font-semibold text-xs flex items-center justify-center transition focus:outline-none focus:ring-2 focus:ring-lereng-primary">
+                Tanya Tiket Spot Ini
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Tour Packages & Pricing Section (FR-02, Section 5.3) -->
+    <section id="paket" aria-labelledby="paket-heading" class="bg-white py-10 md:py-16 border-y border-gray-200">
+      <div class="max-w-5xl mx-auto px-4">
+        
+        <div class="text-center max-w-2xl mx-auto mb-8">
+          <h2 id="paket-heading" class="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+            Paket Wisata Terpadu (All-In)
+          </h2>
+          <p class="text-sm text-gray-600 mt-2">
+            Tarif transparan tanpa biaya tambahan tersembunyi. Termasuk pemandu lokal bersertifikat dan asuransi kunjungan BUMDes.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Paket 1: Paket Santai Keluarga -->
+          <article class="p-5 sm:p-6 rounded-2xl border border-gray-200 bg-lereng-surface flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <span class="text-xs font-semibold uppercase tracking-wider text-lereng-earth">Paket Keluarga</span>
+                  <h3 class="text-lg font-bold text-gray-900 mt-0.5">Paket Santai Keluarga</h3>
+                  <p class="text-xs text-gray-500">Durasi: 1 Hari Penuh (Minimal 4 orang)</p>
+                </div>
+                <div class="text-right">
+                  <span class="text-xl sm:text-2xl font-extrabold text-lereng-primary">Rp 150.000</span>
+                  <span class="text-xs text-gray-500 block">/ orang</span>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-4 border-t border-gray-200">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Fasilitas yang Termasuk:</h4>
+                <ul class="text-xs text-gray-600 space-y-1.5 list-disc list-inside">
+                  <li>Tiket masuk 4 objek wisata utama tanpa antre</li>
+                  <li>Makan siang nasi liwet kastrol komplit ayam kampung khas desa</li>
+                  <li>Pemandu lokal warga asli untuk memandu rute foto</li>
+                  <li>Shuttle internal desa dari tempat parkir utama</li>
+                  <li>Asuransi kunjungan resmi BUMDes</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Desa%20Wisata%20Lereng%20Asri%2C%20saya%20ingin%20reservasi%20Paket%20Santai%20Keluarga%20(Rp150.000%2Forang).%0A-%20Nama%20Pemesan%3A%20%0A-%20Tanggal%20Kunjungan%3A%20%0A-%20Jumlah%20Orang%3A%20%0AMohon%20info%20ketersediaan%20kuota%20dan%20tata%20cara%20DP.%20Terima%20kasih!" target="_blank" rel="noopener noreferrer" class="min-h-[44px] w-full px-4 py-2.5 rounded-xl bg-lereng-whatsapp-dark hover:bg-lereng-whatsapp-hover text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-sm transition active:scale-98 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-600">
+                <span>Pesan Paket Santai Keluarga via WhatsApp</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Paket 2: Paket Outbound Komunitas -->
+          <article class="p-5 sm:p-6 rounded-2xl border border-gray-200 bg-lereng-surface flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <span class="text-xs font-semibold uppercase tracking-wider text-lereng-earth">Paket Rombongan &amp; Kantor</span>
+                  <h3 class="text-lg font-bold text-gray-900 mt-0.5">Paket Outbound &amp; Team Building</h3>
+                  <p class="text-xs text-gray-500">Durasi: 1 Hari Penuh (Minimal 20 orang)</p>
+                </div>
+                <div class="text-right">
+                  <span class="text-xl sm:text-2xl font-extrabold text-lereng-primary">Rp 225.000</span>
+                  <span class="text-xs text-gray-500 block">/ orang</span>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-4 border-t border-gray-200">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Fasilitas yang Termasuk:</h4>
+                <ul class="text-xs text-gray-600 space-y-1.5 list-disc list-inside">
+                  <li>Fasilitator outbound berlisensi dan perlengkapan simulasi games</li>
+                  <li>Sound system outdoor dan lapangan rumput luas</li>
+                  <li>Makan prasmanan 2 kali (siang dan sore) plus snack kelapa muda</li>
+                  <li>Kamar bilas air hangat bersih dan tim medis standby</li>
+                  <li>Dokumen proposal resmi dan invoice untuk instansi</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a href="https://wa.me/6281234567890?text=Halo%20BUMDes%20Lereng%20Asri%2C%20kami%20dari%20instansi%2Fkomunitas%20ingin%20menanyakan%20Paket%20Outbound%20%26%20Team%20Building%20(Rp225.000%2Forang).%0A-%20Nama%20Instansi%2FKomunitas%3A%20%0A-%20Rencana%20Tanggal%3A%20%0A-%20Estimasi%20Peserta%3A%20%20Orang%0AMohon%20kirimkan%20dokumen%20proposal%20resmi%20dan%20invoice%20penawaran.%20Terima%20kasih!" target="_blank" rel="noopener noreferrer" class="min-h-[44px] w-full px-4 py-2.5 rounded-xl bg-lereng-whatsapp-dark hover:bg-lereng-whatsapp-hover text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-sm transition active:scale-98 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-600">
+                <span>Minta Proposal Outbound via WhatsApp</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Paket 3: Paket Camping Sejuk -->
+          <article class="p-5 sm:p-6 rounded-2xl border border-gray-200 bg-lereng-surface flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <span class="text-xs font-semibold uppercase tracking-wider text-lereng-earth">Paket Berkemah</span>
+                  <h3 class="text-lg font-bold text-gray-900 mt-0.5">Paket Camping Sejuk Lereng</h3>
+                  <p class="text-xs text-gray-500">Durasi: 2 Hari 1 Malam (Kapasitas 4 orang)</p>
+                </div>
+                <div class="text-right">
+                  <span class="text-xl sm:text-2xl font-extrabold text-lereng-primary">Rp 350.000</span>
+                  <span class="text-xs text-gray-500 block">/ tenda</span>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-4 border-t border-gray-200">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Fasilitas yang Termasuk:</h4>
+                <ul class="text-xs text-gray-600 space-y-1.5 list-disc list-inside">
+                  <li>Tenda dome double-layer terpasang siap pakai</li>
+                  <li>4 matras busa tebal dan sleeping bag bersih higienis</li>
+                  <li>Colokan listrik per kavling tenda dan penerangan area</li>
+                  <li>Kayu bakar untuk api unggun malam hari</li>
+                  <li>Sarapan pagi nasi uduk hangat dan kopi Arabika lokal</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Lereng%20Asri%2C%20saya%20ingin%20booking%20Paket%20Camping%20Sejuk%20Lereng%20(Rp350.000%2Ftenda).%0A-%20Tanggal%20Menginap%3A%20%0A-%20Jumlah%20Tenda%3A%20%0A-%20Nama%20Ketua%20Rombongan%3A%20%0ATerima%20kasih." target="_blank" rel="noopener noreferrer" class="min-h-[44px] w-full px-4 py-2.5 rounded-xl bg-lereng-whatsapp-dark hover:bg-lereng-whatsapp-hover text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-sm transition active:scale-98 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-600">
+                <span>Booking Tenda Camping via WhatsApp</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Paket 4: Edukasi Petani Cilik -->
+          <article class="p-5 sm:p-6 rounded-2xl border border-gray-200 bg-lereng-surface flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <span class="text-xs font-semibold uppercase tracking-wider text-lereng-earth">Paket Edukasi Sekolah</span>
+                  <h3 class="text-lg font-bold text-gray-900 mt-0.5">Paket Edukasi Petani Cilik</h3>
+                  <p class="text-xs text-gray-500">Durasi: Setengah Hari (Minimal 10 anak)</p>
+                </div>
+                <div class="text-right">
+                  <span class="text-xl sm:text-2xl font-extrabold text-lereng-primary">Rp 85.000</span>
+                  <span class="text-xs text-gray-500 block">/ anak</span>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-4 border-t border-gray-200">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Fasilitas yang Termasuk:</h4>
+                <ul class="text-xs text-gray-600 space-y-1.5 list-disc list-inside">
+                  <li>Praktik tanam bibit padi di lumpur sawah dangkal yang aman</li>
+                  <li>Petik sayur hidroponik segar yang boleh dibawa pulang</li>
+                  <li>Caping tani hias sebagai kenang-kenangan</li>
+                  <li>Kudapan ubi rebus manis dan susu segar perah lokal</li>
+                  <li>Guru pendamping bebas biaya retribusi</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Lereng%20Asri%2C%20kami%20dari%20sekolah%20ingin%20reservasi%20Paket%20Edukasi%20Petani%20Cilik%20(Rp85.000%2Fanak)." target="_blank" rel="noopener noreferrer" class="min-h-[44px] w-full px-4 py-2.5 rounded-xl bg-lereng-whatsapp-dark hover:bg-lereng-whatsapp-hover text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-sm transition active:scale-98 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-600">
+                <span>Reservasi Wisata Edukasi Sekolah</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Free Village Amenities Note -->
+        <div class="mt-8 p-4 rounded-xl bg-lereng-primary-container text-lereng-primary text-xs leading-relaxed border border-emerald-200">
+          <p class="font-bold text-sm mb-1">Fasilitas Publik Bebas Retribusi Tambahan:</p>
+          <p>
+            Musholla luas dan bersih, 16 bilik toilet higienis air pegunungan segar, 12 gazebo bambu tepi sawah, area parkir terpadu berpenjaga, dan Wi-Fi publik desa di area sentral.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Interactive Cost Estimator (FR-04, Problem Solver for Tourists) -->
+    <section id="kalkulator" aria-labelledby="calc-heading" class="py-10 md:py-16">
+      <div class="max-w-3xl mx-auto px-4">
+        
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm">
+          <div class="border-b border-gray-200 pb-4 mb-6">
+            <span class="text-xs font-semibold uppercase tracking-wider text-lereng-earth">Kalkulator Biaya Transparan</span>
+            <h2 id="calc-heading" class="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
+              Simulasi Biaya Kunjungan Rombongan
+            </h2>
+            <p class="text-xs sm:text-sm text-gray-600 mt-1">
+              Pilih paket wisata dan tentukan jumlah peserta. Hasil estimasi biaya dapat langsung dikirimkan menjadi draf pesan pemesanan ke WhatsApp pengelola.
+            </p>
+          </div>
+
+          <form id="calc-form" class="space-y-4" onsubmit="event.preventDefault();">
+            <div>
+              <label for="calc-package" class="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1.5">
+                Pilih Jenis Paket
+              </label>
+              <select id="calc-package" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 bg-white text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-lereng-primary focus:border-transparent">
+                <option value="150000" data-name="Paket Santai Keluarga" data-unit="orang" data-min="4">Paket Santai Keluarga (Rp 150.000 / orang, min. 4)</option>
+                <option value="225000" data-name="Paket Outbound &amp; Team Building" data-unit="orang" data-min="20">Paket Outbound &amp; Team Building (Rp 225.000 / orang, min. 20)</option>
+                <option value="350000" data-name="Paket Camping Sejuk Lereng" data-unit="tenda" data-min="1">Paket Camping Sejuk Lereng (Rp 350.000 / tenda, isi 4)</option>
+                <option value="85000" data-name="Paket Edukasi Petani Cilik" data-unit="anak" data-min="10">Paket Edukasi Petani Cilik (Rp 85.000 / anak, min. 10)</option>
+              </select>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="calc-quantity" class="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1.5">
+                  Jumlah Peserta / Tenda
+                </label>
+                <input type="number" id="calc-quantity" min="1" value="4" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 bg-white text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-lereng-primary focus:border-transparent">
+                <span id="calc-min-hint" class="text-[11px] text-gray-500 mt-1 block">Minimal pemesanan: 4 orang</span>
+              </div>
+              <div>
+                <label for="calc-date" class="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1.5">
+                  Perkiraan Tanggal Kunjungan
+                </label>
+                <input type="date" id="calc-date" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 bg-white text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-lereng-primary focus:border-transparent">
+              </div>
+            </div>
+
+            <!-- Total Calculation Box -->
+            <div class="p-4 rounded-xl bg-lereng-surface border border-gray-200 mt-6 flex items-center justify-between">
+              <div>
+                <span class="text-xs text-gray-600 block">Total Estimasi Biaya Resmi:</span>
+                <span id="calc-total" class="text-2xl font-extrabold text-lereng-primary">Rp 600.000</span>
+              </div>
+              <div class="text-right text-xs text-gray-500">
+                <span id="calc-summary" class="block">4 orang &times; Rp 150.000</span>
+                <span>Termasuk asuransi &amp; fasilitas</span>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <button type="button" id="calc-wa-btn" class="min-h-[44px] w-full px-4 py-3 rounded-xl bg-lereng-whatsapp-dark hover:bg-lereng-whatsapp-hover text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-sm transition active:scale-98 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-600 cursor-pointer">
+                <span>Kirim Draf Pemesanan Ini ke WhatsApp Pengelola</span>
+              </button>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Photo Gallery (FR-07, Real rural activities) -->
+    <section id="galeri" aria-labelledby="galeri-heading" class="bg-white py-10 md:py-16 border-y border-gray-200">
+      <div class="max-w-5xl mx-auto px-4">
+        
+        <div class="text-center max-w-xl mx-auto mb-8">
+          <h2 id="galeri-heading" class="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+            Dokumentasi Kegiatan &amp; Alam Asri
+          </h2>
+          <p class="text-sm text-gray-600 mt-1">
+            Momen autentik kehangatan warga desa dan keindahan alam pegunungan yang menanti Anda.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          <div class="aspect-square rounded-xl overflow-hidden border border-gray-200 bg-gray-100 group">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" alt="Hamparan sawah terasering berlatar perbukitan hijau" width="400" height="400" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="aspect-square rounded-xl overflow-hidden border border-gray-200 bg-gray-100 group">
+            <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=400&q=80" alt="Suasana malam hari perkemahan dengan api unggun di Lereng Asri" width="400" height="400" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="aspect-square rounded-xl overflow-hidden border border-gray-200 bg-gray-100 group">
+            <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=400&q=80" alt="Wisatawan menikmati udara sejuk di atas jembatan kebun teh" width="400" height="400" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="aspect-square rounded-xl overflow-hidden border border-gray-200 bg-gray-100 group">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80" alt="Sajian hidangan nasi liwet dan kuliner khas desa Lereng Asri" width="400" height="400" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Location & Route Navigation (Section 5.4, Real road guidance) -->
+    <section id="lokasi" aria-labelledby="lokasi-heading" class="py-10 md:py-16">
+      <div class="max-w-5xl mx-auto px-4">
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          
+          <div class="md:col-span-6 space-y-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-lereng-earth">Akses Rute Teruji</span>
+            <h2 id="lokasi-heading" class="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+              Panduan Jalur Masuk &amp; Area Parkir Bus
+            </h2>
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              Jalan utama telah dilapisi aspal hotmix selebar 7,5 meter tanpa tikungan patah curam. Dapat dilalui dengan aman oleh bus pariwisata 50-seat hingga area parkir utama desa.
+            </p>
+
+            <!-- Route Details List -->
+            <div class="space-y-3 pt-2">
+              <div class="p-3.5 rounded-xl bg-white border border-gray-200">
+                <span class="text-xs font-bold text-lereng-primary block">Dari Pusat Kota (&plusmn;24 km / 45 menit):</span>
+                <p class="text-xs text-gray-600 mt-1">
+                  Melalui Ring Road Selatan menuju Jl. Raya Lereng Asri. Jalan mulus dan rambu penunjuk arah desa jelas di setiap pertigaan utama.
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-white border border-gray-200">
+                <span class="text-xs font-bold text-lereng-primary block">Dari Stasiun Kereta Utama (&plusmn;18 km / 30 menit):</span>
+                <p class="text-xs text-gray-600 mt-1">
+                  Tersedia angkutan desa kuning No. 05 atau layanan shuttle mobil Elf resmi BUMDes yang siap jemput di stasiun dengan reservasi awal.
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-white border border-gray-200">
+                <span class="text-xs font-bold text-lereng-primary block">Kapasitas Parkir Terpadu 2 Hektar:</span>
+                <p class="text-xs text-gray-600 mt-1">
+                  Mampu menampung 40 bus besar (50-seat), 120 mobil pribadi, dan 300+ sepeda motor. Dilengkapi lounge istirahat supir ber-AC, pos tiket resmi, dan CCTV 24 jam.
+                </p>
+              </div>
+            </div>
+
+            <!-- Route Action Buttons -->
+            <div class="pt-2 flex flex-col sm:flex-row gap-3">
+              <a href="https://maps.google.com/?q=Desa+Wisata+Lereng+Asri" target="_blank" rel="noopener noreferrer" class="min-h-[44px] px-4 py-2.5 rounded-xl bg-lereng-primary hover:bg-lereng-primary-hover text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-sm transition focus:outline-none focus:ring-2 focus:ring-lereng-primary">
+                <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                <span>Buka Titik di Google Maps</span>
+              </a>
+              <a href="https://wa.me/6281234567890?text=Halo%20Posko%20Jaga%20Lereng%20Asri%2C%20kami%20rombongan%20bus%20pariwisata%20sedang%20dalam%20perjalanan%20menuju%20desa.%20Mohon%20info%20kondisi%20lalu%20lintas%20dan%20slot%20parkir%20bus.%20Terima%20kasih!" target="_blank" rel="noopener noreferrer" class="min-h-[44px] px-4 py-2.5 rounded-xl bg-white border border-gray-300 text-gray-800 font-semibold text-xs flex items-center justify-center gap-2 hover:bg-gray-50 transition focus:outline-none focus:ring-2 focus:ring-lereng-primary">
+                <span>Koordinasi Rombongan Bus via WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Address & Operational Map Container -->
+          <div class="md:col-span-6 bg-white p-5 rounded-2xl border border-gray-200 space-y-4">
+            <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider">Alamat Kantor &amp; Posko Desa</h3>
+            <p class="text-xs text-gray-700 leading-relaxed">
+              Jl. Raya Lereng Asri No. 88, Desa Sukamaju, Kec. Pegunungan Asri, Kabupaten Hijau Sejahtera, 55672
+            </p>
+
+            <!-- Map Placeholder / Real Coordinates Mock -->
+            <div class="rounded-xl overflow-hidden border border-gray-200 bg-emerald-50 p-6 text-center space-y-2">
+              <div class="w-10 h-10 rounded-full bg-lereng-primary text-white flex items-center justify-center mx-auto">
+                <svg class="w-5 h-5 fill-current" aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+              </div>
+              <p class="text-xs font-bold text-lereng-primary">Titik Koordinat Resmi Desa Wisata Lereng Asri</p>
+              <p class="text-[11px] text-gray-600">Latitude: -7.284512 &bull; Longitude: 110.392184</p>
+              <p class="text-[11px] text-gray-500">Petugas posko siaga memandu rombongan via telepon saat memasuki gapura desa.</p>
+            </div>
+
+            <div class="pt-2 border-t border-gray-100 text-xs text-gray-600 space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span>Jam Buka Gerbang Utama:</span>
+                <span class="font-semibold text-gray-900">06.00 &ndash; 18.00 WIB</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>Hotline Posko Lalu Lintas:</span>
+                <a href="tel:+6281234567890" class="font-semibold text-lereng-primary hover:underline">0812-3456-7890</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer (R-05: Focused on actual village content, no generic 4-column AI slop) -->
+  <footer class="bg-gray-900 text-gray-400 py-8 text-xs border-t border-gray-800">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="space-y-1 text-center sm:text-left">
+        <p class="font-bold text-white text-sm">Desa Wisata Lereng Asri</p>
+        <p>Dikelola oleh Badan Usaha Milik Desa (BUMDes) Sukamaju &amp; Pokdarwis.</p>
+      </div>
+      <div class="text-center sm:text-right space-y-1">
+        <p>&copy; 2026 Desa Wisata Lereng Asri. Seluruh hak cipta dilindungi.</p>
+        <p class="text-gray-500 text-[11px]">Standar Web Ramah Wisatawan &bull; Anti-Slop Production Ready</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Action Button (FAB) WhatsApp Direct (R-03, Section 4.3) -->
+  <aside aria-label="Tombol Kontak Langsung WhatsApp" class="fixed bottom-20 right-4 z-30">
+    <a 
+      href="https://wa.me/6281234567890?text=Halo%20Admin%20Desa%20Wisata%20Lereng%20Asri%2C%20saya%20ingin%20tanya%20informasi%20kunjungan." 
+      target="_blank" 
+      rel="noopener noreferrer"
+      aria-label="Hubungi WhatsApp Pengelola Desa"
+      class="min-h-[48px] px-4 py-2.5 rounded-full bg-lereng-whatsapp-dark hover:bg-lereng-whatsapp-hover text-white font-bold text-xs flex items-center gap-2 shadow-lg transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-600"
+    >
+      <svg class="w-5 h-5 fill-current" aria-hidden="true" viewBox="0 0 24 24">
+        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.173.086.275.072.376-.043.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/>
+      </svg>
+      <span>Chat Desa</span>
+    </a>
+  </aside>
+
+  <!-- Fixed Mobile Bottom Tab Bar (Section 4.2: 5 Main Menus, Touch Targets >= 44px) -->
+  <nav aria-label="Navigasi Menu Mobile" class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white border-t border-gray-200 h-16 flex items-center justify-around px-2 shadow-lg">
+    <a href="#beranda" class="bottom-nav-item flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-lereng-primary py-1 focus:outline-none focus:ring-2 focus:ring-lereng-primary focus:rounded-lg">
+      <svg class="w-5 h-5 fill-current" aria-hidden="true" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span class="text-[10px] font-semibold mt-1">Beranda</span>
+    </a>
+    <a href="#destinasi" class="bottom-nav-item flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-gray-500 hover:text-lereng-primary py-1 focus:outline-none focus:ring-2 focus:ring-lereng-primary focus:rounded-lg">
+      <svg class="w-5 h-5 fill-current" aria-hidden="true" viewBox="0 0 24 24"><path d="M14 6l-3.75 5 2.85 3.8-1.6 1.2C9.81 13.75 7 10 7 10l-6 8h22L14 6z"/></svg>
+      <span class="text-[10px] font-medium mt-1">Destinasi</span>
+    </a>
+    <a href="#paket" class="bottom-nav-item flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-gray-500 hover:text-lereng-primary py-1 focus:outline-none focus:ring-2 focus:ring-lereng-primary focus:rounded-lg">
+      <svg class="w-5 h-5 fill-current" aria-hidden="true" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+      <span class="text-[10px] font-medium mt-1">Paket</span>
+    </a>
+    <a href="#galeri" class="bottom-nav-item flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-gray-500 hover:text-lereng-primary py-1 focus:outline-none focus:ring-2 focus:ring-lereng-primary focus:rounded-lg">
+      <svg class="w-5 h-5 fill-current" aria-hidden="true" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+      <span class="text-[10px] font-medium mt-1">Galeri</span>
+    </a>
+    <a href="#lokasi" class="bottom-nav-item flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-gray-500 hover:text-lereng-primary py-1 focus:outline-none focus:ring-2 focus:ring-lereng-primary focus:rounded-lg">
+      <svg class="w-5 h-5 fill-current" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      <span class="text-[10px] font-medium mt-1">Lokasi</span>
+    </a>
+  </nav>
+
+  <!-- Interactive Reservation Modal (R-26, R-32: Keyboard operable, Escape closes, Focus Trap) -->
+  <div id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="relative bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-gray-200 animate-in fade-in zoom-in-95 duration-200">
+      
+      <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+        <div>
+          <span class="text-xs uppercase font-bold text-lereng-earth tracking-wider">Formulir Langsung</span>
+          <h3 id="modal-title" class="text-lg font-bold text-gray-900">Ajukan Reservasi Kunjungan</h3>
+        </div>
+        <button id="close-modal-btn" type="button" aria-label="Tutup formulir reservasi" class="w-9 h-9 flex items-center justify-center rounded-xl text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-lereng-primary cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="reservation-form" class="mt-4 space-y-3.5">
+        <div>
+          <label for="res-name" class="block text-xs font-semibold text-gray-700 mb-1">Nama Lengkap Pemesan / Instansi</label>
+          <input type="text" id="res-name" required placeholder="Contoh: Budi Santoso / PT Sejahtera" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-lereng-primary">
+        </div>
+
+        <div>
+          <label for="res-package" class="block text-xs font-semibold text-gray-700 mb-1">Paket yang Dipilih</label>
+          <select id="res-package" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-lereng-primary">
+            <option value="Paket Santai Keluarga (Rp 150.000 / orang)">Paket Santai Keluarga (Rp 150.000 / orang)</option>
+            <option value="Paket Outbound & Team Building (Rp 225.000 / orang)">Paket Outbound &amp; Team Building (Rp 225.000 / orang)</option>
+            <option value="Paket Camping Sejuk Lereng (Rp 350.000 / tenda)">Paket Camping Sejuk Lereng (Rp 350.000 / tenda)</option>
+            <option value="Paket Edukasi Petani Cilik (Rp 85.000 / anak)">Paket Edukasi Petani Cilik (Rp 85.000 / anak)</option>
+            <option value="Tiket Masuk Biasa (Non-Paket)">Tiket Masuk Biasa (Non-Paket)</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="res-date" class="block text-xs font-semibold text-gray-700 mb-1">Tanggal Kunjungan</label>
+            <input type="date" id="res-date" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-lereng-primary">
+          </div>
+          <div>
+            <label for="res-participants" class="block text-xs font-semibold text-gray-700 mb-1">Jumlah Orang</label>
+            <input type="number" id="res-participants" min="1" value="4" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-lereng-primary">
+          </div>
+        </div>
+
+        <div>
+          <label for="res-notes" class="block text-xs font-semibold text-gray-700 mb-1">Catatan Tambahan (Kendaraan / Permintaan Khusus)</label>
+          <textarea id="res-notes" rows="2" placeholder="Contoh: Kami membawa 1 bus 50-seat dan butuh parkir." class="w-full px-3.5 py-2 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-lereng-primary"></textarea>
+        </div>
+
+        <div class="pt-2 flex flex-col gap-2">
+          <button type="submit" class="min-h-[44px] w-full px-4 py-3 rounded-xl bg-lereng-whatsapp-dark hover:bg-lereng-whatsapp-hover text-white font-bold text-sm flex items-center justify-center gap-2 shadow-sm transition active:scale-98 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-600 cursor-pointer">
+            <span>Kirim Permintaan ke WhatsApp BUMDes</span>
+          </button>
+          <p class="text-[11px] text-center text-gray-500">
+            Formulir akan otomatis membuka WhatsApp resmi BUMDes Sukamaju tanpa biaya perantara.
+          </p>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
